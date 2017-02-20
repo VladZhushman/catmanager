@@ -8,6 +8,6 @@
 <body>
     <h1>Cat Manager</h1>
     <br>
-    <a href="<c:url value="/cats"/>" target="_blank"> Cat List</a>
+    <a href="<c:url value="/cats"/>" > Cat List</a>
 </body>
 </html>

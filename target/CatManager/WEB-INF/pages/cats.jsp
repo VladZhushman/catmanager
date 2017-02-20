@@ -67,7 +67,7 @@
         <c:forEach items="${listCats}" var="cat">
             <tr>
                 <td>${cat.id}</td>
-                <td><a href="/catdata/${cat.id}" target="_blank">${cat.catName}</a></td>
+                <td><a href="/catdata/${cat.id}">${cat.catName}</a></td>
                 <td>${cat.catOwner}</td>
                 <td>${cat.catColor}</td>
                 <td><a href="<c:url value='/edit/${cat.id}'/>">Edit</a></td>
@@ -131,11 +131,11 @@
             <td colspan="2">
                 <c:if test="${!empty cat.catName}">
                     <input type="submit"
-                           value="<spring:message text="Edit Book"/>"/>
+                           value="<spring:message text="Edit Cat"/>"/>
                 </c:if>
                 <c:if test="${empty cat.catName}">
                     <input type="submit"
-                           value="<spring:message text="Add Book"/>"/>
+                           value="<spring:message text="Add Cat"/>"/>
                 </c:if>
             </td>
         </tr>

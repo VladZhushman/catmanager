@@ -40,13 +40,13 @@ public class CatController {
         return "redirect:/cats";
     }
 
-    @RequestMapping("/remove{id}")
+    @RequestMapping("/remove/{id}")
     public String removeCat(@PathVariable("id") int id) {
         this.catService.removeCat(id);
         return "redirect:/cats";
     }
 
-    @RequestMapping("edit.{id}")
+    @RequestMapping("edit/{id}")
     public String editCat(@PathVariable("id") int id, Model model) {
         model.addAttribute("cat",this.catService.getCatById(id));
         model.addAttribute("listCats", this.catService.listCats());
