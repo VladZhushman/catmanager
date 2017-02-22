@@ -6,7 +6,7 @@
 
 <html>
 <head>
-    <title>BookData</title>
+    <title>CatData</title>
 
     <style type="text/css">
         .tg {
@@ -57,13 +57,27 @@
         <th width="120">Name</th>
         <th width="120">Owner</th>
         <th width="120">Color</th>
+        <th>Photo</th>
     </tr>
     <tr>
         <td>${cat.id}</td>
         <td>${cat.catName}</td>
         <td>${cat.catOwner}</td>
         <td>${cat.catColor}</td>
+        <td><img src="${cat.photo}" alt="No Photo" ></td>
     </tr>
 </table>
+
+<img src="/resources/cat1.png">
+
+
+<form:form method="post" action="handleUpload/${cat.id}" enctype="multipart/form-data">
+    <p><label for="image">Choose Image</label></p>
+    <p><input name="file" id="fileToUpload" type="file" /></p>
+    <p><input type="submit" value="Upload"></p>
+</form:form>
+
+
+
 </body>
 </html>

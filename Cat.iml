@@ -65,5 +65,7 @@
     <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.7" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.36" level="project" />
+    <orderEntry type="library" name="Maven: commons-fileupload:commons-fileupload:1.2" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:2.4" level="project" />
   </component>
 </module>

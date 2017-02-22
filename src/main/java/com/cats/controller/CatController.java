@@ -6,15 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 @Controller
 public class CatController {
 
     private CatService catService;
+    private static final String UPLOAD_DIRECTORY ="/resources/";
 
     @Autowired(required = true)
     @Qualifier(value = "catService")
@@ -58,8 +67,36 @@ public class CatController {
     public String catData(@PathVariable("id") int id, Model model) {
         model.addAttribute("cat", this.catService.getCatById(id));
 
+
         return "catdata";
+
     }
+
+    @RequestMapping(value = "catdata/handleUpload/{id}", method = RequestMethod.POST)
+    public String handleUpload( @PathVariable("id") int id,
+            @RequestParam(value = "file", required = false) MultipartFile multipartFile,
+            HttpServletResponse httpServletResponse) {
+
+        String orgName = multipartFile.getOriginalFilename();
+        String filePlaceToUpload = "/home/vlad/IdeaProjects/Cat/src/main/webapp/resources/";
+        String filePath = filePlaceToUpload + orgName;
+        File dest = new File(filePath);
+        try {
+            multipartFile.transferTo(dest);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Cat cat = this.catService.getCatById(id);
+        cat.setPhoto(UPLOAD_DIRECTORY+orgName);
+        this.catService.updateCat(cat);
+
+        return "handleUpload";
+    }
+
+
 }
 
 

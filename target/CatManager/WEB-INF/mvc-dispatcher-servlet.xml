@@ -60,6 +60,10 @@
 
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
 </beans>
 
